@@ -10,13 +10,15 @@ public class MainWindow
 	public static void initWindow(Stage window)
 	{
 		MainWindow.window = window;
-		window.setTitle("LAPTOP GUARD");
+		window.setTitle("Plug in before enabling.");
 		MainWindow.window.setOnCloseRequest(new EventHandler<WindowEvent>()
 		{
 			@Override
 			public void handle(WindowEvent e) 
 			{
-				PowerSupplyMonitor.disable();
+				PowerSupplyMonitor.getInstance().disable();
+				SettingsPanel.getInstance().close();
+				System.exit(0);
 			}
 		});
 	}

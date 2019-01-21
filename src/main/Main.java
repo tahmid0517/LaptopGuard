@@ -31,7 +31,7 @@ public class Main extends Application
 		Stage splashWind = new Stage();
 		splashWind.initStyle(StageStyle.UNDECORATED);
 		ImageView imgView = new ImageView();
-		Image logo = new Image("res/logo.png",LOGO_WIDTH, LOGO_HEIGHT,true,true);
+		Image logo = new Image("resources/logo.png",LOGO_WIDTH,LOGO_HEIGHT,true,true);
 		imgView.setImage(logo);
 		Group rootNode = new Group();
 		Scene scene = new Scene(rootNode,logo.getWidth(),logo.getHeight(),Color.DARKGREY);

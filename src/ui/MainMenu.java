@@ -40,7 +40,7 @@ public class MainMenu
 		rootNode = new Group();
 		scene = new Scene(rootNode);
 		ImageView imgView = new ImageView();
-		Image logo = new Image("res/logo.png",LOGO_WIDTH, LOGO_HEIGHT,true,true);
+		Image logo = new Image("/resources/logo.png",LOGO_WIDTH, LOGO_HEIGHT,true,true);
 		imgView.setImage(logo);
 		rootNode.getChildren().add(imgView);
 		double LOGO_POS_X = (WIND_WIDTH - logo.getWidth()) / 2;
@@ -53,13 +53,12 @@ public class MainMenu
 	public void enable()
 	{
 		System.out.println("Enabled");
-		PowerSupplyMonitor.enable();
+		PowerSupplyMonitor.getInstance().enable();
 		try
 		{
 			Runtime.getRuntime().exec("C:/Program Files (x86)/LaptopGuard/LockComputer.exe");
 		}
 		catch(Exception ex) {}
-		enableBtn.setText("DISABLE");
 		enableBtn.setOnAction(new EventHandler<ActionEvent> ()
 		{
 			@Override
@@ -68,12 +67,13 @@ public class MainMenu
 				disable();
 			}
 		});
+		enableBtn.setText("DISABLE");
 	}
 	
 	public void disable()
 	{
 		System.out.println("Disabled");
-		PowerSupplyMonitor.disable();
+		PowerSupplyMonitor.getInstance().disable();
 		enableBtn.setText("ENABLE");
 		enableBtn.setOnAction(new EventHandler<ActionEvent> ()
 		{
@@ -106,6 +106,14 @@ public class MainMenu
 		settingsBtn.setLayoutX(centred_btn_x_pos);
 		enableBtn.setLayoutY(LOGO_HEIGHT + LOGO_BTN_SPACING);
 		settingsBtn.setLayoutY(enableBtn.getLayoutY() + BTN_HEIGHT + BTN_SPACING );
+		settingsBtn.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent e)
+			{
+				SettingsPanel.getInstance().show();
+			}
+		});
 		rootNode.getChildren().addAll(enableBtn,settingsBtn);
 	}
 	
