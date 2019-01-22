@@ -35,13 +35,14 @@ public class EmailSender
 
 		Session session = Session.getInstance(props,
 		  new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
+			protected PasswordAuthentication getPasswordAuthentication() 
+			{
 				return new PasswordAuthentication(username, password);
 			}
 		  });
 
-		try {
-
+		try 
+		{
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(username));
 			message.setRecipients(Message.RecipientType.TO,
